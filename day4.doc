@@ -1,0 +1,1003 @@
+
+Setting environment for using XAMPP for Windows.
+730110@128-IMAC09 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 3
+Server version: 10.1.21-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+5 rows in set (0.02 sec)
+
+MariaDB [(none)]> create database csd2204v18;
+Query OK, 1 row affected (0.00 sec)
+
+MariaDB [(none)]> use csd2204v18;
+Database changed
+MariaDB [csd2204v18]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| csd2204v18         |
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
++--------------------+
+6 rows in set (0.02 sec)
+
+MariaDB [csd2204v18]> use csd2204v18;
+Database changed
+MariaDB [csd2204v18]> create table customers(
+    -> customerid int(2),
+    -> name varchar(40),
+    -> nickname varchar(10),
+    -> address varchar(50),
+    -> city varchar(30),
+    -> postalcode int(6)
+    -> );
+Query OK, 0 rows affected (0.88 sec)
+
+MariaDB [csd2204v18]> show tables;
++----------------------+
+| Tables_in_csd2204v18 |
++----------------------+
+| customers            |
++----------------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> describe customers;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int(2)      | YES  |     | NULL    |       |
+| name       | varchar(40) | YES  |     | NULL    |       |
+| nickname   | varchar(10) | YES  |     | NULL    |       |
+| address    | varchar(50) | YES  |     | NULL    |       |
+| city       | varchar(30) | YES  |     | NULL    |       |
+| postalcode | int(6)      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> show create table customers;
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                |
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| customers | CREATE TABLE `customers` (
+  `customerid` int(2) DEFAULT NULL,
+  `name` varchar(40) DEFAULT NULL,
+  `nickname` varchar(10) DEFAULT NULL,
+  `address` varchar(50) DEFAULT NULL,
+  `city` varchar(30) DEFAULT NULL,
+  `postalcode` int(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.02 sec)
+
+MariaDB [csd2204v18]> insert into customers value(1,'arsh','arsh','32 wshington street'.'woc',235614);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.'woc',235614)' at line 1
+MariaDB [csd2204v18]> insert into customers value(1,'arsh','arsh','32 wshington street'.'woc',235614);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.'woc',235614)' at line 1
+MariaDB [csd2204v18]> insert into customers values(1,'arsh','arsh','32 wshington street'.'woc',235614);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.'woc',235614)' at line 1
+MariaDB [csd2204v18]> insert into customers values(1,'arsh','arsh','32 wshington street'.'woc',235614);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '.'woc',235614)' at line 1
+MariaDB [csd2204v18]> insert into customers values(1,'arsh','arsh','north york''toronto',235614);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+MariaDB [csd2204v18]> insert into customers values(1,'arsh','arsh','north york','toronto',235614);
+Query OK, 1 row affected (0.08 sec)
+
+MariaDB [csd2204v18]> insert into customers values(2,'bob marlery','bob','keele street','wdc',123456);
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [csd2204v18]> insert into customers values(3,'cherlies thon',charles','empire state building','brazil',127853);
+    '> insert into customers values(3,'cherlies thon','charles','empire state building','brazil',127853);
+    '> );
+    '> insert into customers values(3,'cherlies thon','charles','empire state building','brazil',127853);
+    '> ;
+    '> );
+    '>
+    '>
+    '>
+    '> insert into customers values(3,'cherlies thon','charles','empire state building','brazil',127853);
+    '> bye;
+    '> bye
+    '> ;
+    '>
+    '> ;
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '','empire state building','brazil',127853);
+insert into customers values(3,'cher' at line 1
+MariaDB [csd2204v18]> insert into customers values(3,'cherlies thon','charles','empire state building','brazil',127853);
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [csd2204v18]> insert into customers values(4,'denil jack','gj','kemmedy','south africa',645287);
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [csd2204v18]> insert into customers values(5,'tony special','special','cakwile','usa',330087);
+Query OK, 1 row affected (0.13 sec)
+
+MariaDB [csd2204v18]> select  from customers where name like '%n';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from customers where name like '%n'' at line 1
+MariaDB [csd2204v18]> select * from customers where name like '%n';
++------------+---------------+----------+-----------------------+--------+------------+
+| customerid | name          | nickname | address               | city   | postalcode |
++------------+---------------+----------+-----------------------+--------+------------+
+|          3 | cherlies thon | charles  | empire state building | brazil |     127853 |
++------------+---------------+----------+-----------------------+--------+------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers where customerid not between  3 and 5;
++------------+-------------+----------+--------------+---------+------------+
+| customerid | name        | nickname | address      | city    | postalcode |
++------------+-------------+----------+--------------+---------+------------+
+|          1 | arsh        | arsh     | north york   | toronto |     235614 |
+|          2 | bob marlery | bob      | keele street | wdc     |     123456 |
++------------+-------------+----------+--------------+---------+------------+
+2 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers where nickname NOI IN;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOI IN' at line 1
+MariaDB [csd2204v18]> select * from customers where nickname NOI IN('bob','gj');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'NOI IN('bob','gj')' at line 1
+MariaDB [csd2204v18]> select * from customers where nickname not in('bob','gj');
++------------+---------------+----------+-----------------------+---------+------------+
+| customerid | name          | nickname | address               | city    | postalcode |
++------------+---------------+----------+-----------------------+---------+------------+
+|          1 | arsh          | arsh     | north york            | toronto |     235614 |
+|          3 | cherlies thon | charles  | empire state building | brazil  |     127853 |
+|          5 | tony special  | special  | cakwile               | usa     |     330087 |
++------------+---------------+----------+-----------------------+---------+------------+
+3 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select customerid,name,city from customers;
++------------+---------------+--------------+
+| customerid | name          | city         |
++------------+---------------+--------------+
+|          1 | arsh          | toronto      |
+|          2 | bob marlery   | wdc          |
+|          3 | cherlies thon | brazil       |
+|          4 | denil jack    | south africa |
+|          5 | tony special  | usa          |
++------------+---------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select customerid,name as "full name" from customers where nickname not in('bob,'gjb');
+    '> select customerid,name as "full name" from customers where nickname not in('bob','gjb');
+    '>  ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'gjb');
+select customerid,name as "full name" from customers where nickname not i' at line 1
+MariaDB [csd2204v18]> select customerid,name as "full name" from customers where nickname not in('bob','gjb');
++------------+---------------+
+| customerid | full name     |
++------------+---------------+
+|          1 | arsh          |
+|          3 | cherlies thon |
+|          4 | denil jack    |
+|          5 | tony special  |
++------------+---------------+
+4 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select count from customers where name like 'a%';
+ERROR 1054 (42S22): Unknown column 'count' in 'field list'
+MariaDB [csd2204v18]> select count * from customers where name like 'a%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from customers where name like 'a%'' at line 1
+MariaDB [csd2204v18]> select count (*) from customers where name like 'a%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*) from customers where name like 'a%'' at line 1
+MariaDB [csd2204v18]> select count(*) from customers where name like 'a%';
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select count(*) from customers where city as "toronto residences" ='toronto';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'as "toronto residences" ='toronto'' at line 1
+MariaDB [csd2204v18]> select count(*) from customers where city='toronto';
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select count(*) from customers where city='toronto' as"toronto residence";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'as"toronto residence"' at line 1
+MariaDB [csd2204v18]> select count(*) from customers where city='toronto' as "toronto residence";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'as "toronto residence"' at line 1
+MariaDB [csd2204v18]> select count(*) from customers where city='toronto';
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select count(*) city as "toronto residences" from customers where city='toronto';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'as "toronto residences" from customers where city='toronto'' at line 1
+MariaDB [csd2204v18]> select city as "toronto residences" count(*) from customers where city='toronto';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'count(*) from customers where city='toronto'' at line 1
+MariaDB [csd2204v18]> select count(*) from customers where city='toronto';
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select distinct(city) form customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'customers' at line 1
+MariaDB [csd2204v18]> select distinct city form customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'customers' at line 1
+MariaDB [csd2204v18]> SELECT DISTINV(CITY)  form customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'customers' at line 1
+MariaDB [csd2204v18]> SELECT DISTINCT(CITY)  form customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'customers' at line 1
+MariaDB [csd2204v18]> SELECT DISTINCT city,name form customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'customers' at line 1
+MariaDB [csd2204v18]> SELECT DISTINCT city,name FROM customers;
++--------------+---------------+
+| city         | name          |
++--------------+---------------+
+| toronto      | arsh          |
+| wdc          | bob marlery   |
+| brazil       | cherlies thon |
+| south africa | denil jack    |
+| usa          | tony special  |
++--------------+---------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT DISTINCT city,name FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT city,name FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT COUNT(*)  DISTINCT city,name FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT city,name FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT COUNT(*)  DISTINCT city, name FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT city, name FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT COUNT(*)  DISTINCT city, name FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT city, name FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT  DISTINCT city, name FROM customers where customersid between 2 and 5;
+ERROR 1054 (42S22): Unknown column 'customersid' in 'where clause'
+MariaDB [csd2204v18]> SELECT  DISTINCT city, name FROM customers where customerid between 2 and 5;
++--------------+---------------+
+| city         | name          |
++--------------+---------------+
+| wdc          | bob marlery   |
+| brazil       | cherlies thon |
+| south africa | denil jack    |
+| usa          | tony special  |
++--------------+---------------+
+4 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(*) DISTINCT city, name FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT city, name FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT COUNT(*)  DISTINCT city, name FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT city, name FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT COUNT (DISTINCT city, name) FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT city, name) FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT COUNT (DISTINCT city) FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT city) FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT COUNT (DISTINCT (city,name) FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT (city,name) FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT COUNT (DISTINCT (city,name)) FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT (city,name)) FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT COUNT (DISTINCT(name)) FROM customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'DISTINCT(name)) FROM customers' at line 1
+MariaDB [csd2204v18]> SELECT COUNT(DISTINCT(name)) FROM customers;
++-----------------------+
+| COUNT(DISTINCT(name)) |
++-----------------------+
+|                     5 |
++-----------------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(DISTINCT(name,CITY)) FROM customers;
+ERROR 1241 (21000): Operand should contain 1 column(s)
+MariaDB [csd2204v18]> SELECT COUNT(DISTINCT(name,city)) FROM customers;
+ERROR 1241 (21000): Operand should contain 1 column(s)
+MariaDB [csd2204v18]> SELECT COUNT(DISTINCT (name,city)) FROM customers;
+ERROR 1241 (21000): Operand should contain 1 column(s)
+MariaDB [csd2204v18]> SELECT COUNT(DISTINCT (name, city)) FROM customers;
+ERROR 1241 (21000): Operand should contain 1 column(s)
+MariaDB [csd2204v18]> SELECT COUNT(DISTINCT (name, city)) FROM customers;
+ERROR 1241 (21000): Operand should contain 1 column(s)
+MariaDB [csd2204v18]> SELECSELECT Count(*) AS DistinctCountries
+    ->
+    ->  ';
+    '>  ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECSELECT Count(*) AS DistinctCountries
+
+ ';
+ '' at line 1
+MariaDB [csd2204v18]> SELECT Count(*) AS DistinctCity from (select distinct city from customers);
+ERROR 1248 (42000): Every derived table must have its own alias
+MariaDB [csd2204v18]> select count(*) as DistinctCity from (select distinct city from customers);
+ERROR 1248 (42000): Every derived table must have its own alias
+MariaDB [csd2204v18]> select count(*) as (Distinct(City)) from (select distinct city from customers);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '(Distinct(City)) from (select distinct city from customers)' at line 1
+MariaDB [csd2204v18]> select count(city) as "number of customers",city from customers group by city;
++---------------------+--------------+
+| number of customers | city         |
++---------------------+--------------+
+|                   1 | brazil       |
+|                   1 | south africa |
+|                   1 | toronto      |
+|                   1 | usa          |
+|                   1 | wdc          |
++---------------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select count(*) as "no fo customers" from (select distinct city from customers);
+ERROR 1248 (42000): Every derived table must have its own alias
+MariaDB [csd2204v18]> select count(distinct(name)),name from customers group by city;
++-----------------------+---------------+
+| count(distinct(name)) | name          |
++-----------------------+---------------+
+|                     1 | cherlies thon |
+|                     1 | denil jack    |
+|                     1 | arsh          |
+|                     1 | tony special  |
+|                     1 | bob marlery   |
++-----------------------+---------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select count(no of customers(name)),name from customers group by city;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'of customers(name)),name from customers group by city' at line 1
+MariaDB [csd2204v18]> select count(distinct(name)),name from customers group by city;
++-----------------------+---------------+
+| count(distinct(name)) | name          |
++-----------------------+---------------+
+|                     1 | cherlies thon |
+|                     1 | denil jack    |
+|                     1 | arsh          |
+|                     1 | tony special  |
+|                     1 | bob marlery   |
++-----------------------+---------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by name asc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by postalcode asc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by postalcode desc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by city desc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by city acs;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'acs' at line 1
+MariaDB [csd2204v18]> select * from customers order by city acs;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'acs' at line 1
+MariaDB [csd2204v18]> select * from customers order by name acs;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'acs' at line 1
+MariaDB [csd2204v18]> select * from customers order by name asc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by name,city,postalcode asc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by distinct(name,city,postalcode) asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'distinct(name,city,postalcode) asc' at line 1
+MariaDB [csd2204v18]> select * from customers order by city,postalcode asc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by postalcode,city asc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by postalcode asc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by postalcode,city asc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by city asc and postalcode desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'and postalcode desc' at line 1
+MariaDB [csd2204v18]> select * from customers order by city asc,postalcode desc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by customerid desc,name asc,city desc;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by city;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select count(*) as "no of customers",city from customers group by city;
++-----------------+--------------+
+| no of customers | city         |
++-----------------+--------------+
+|               1 | brazil       |
+|               1 | south africa |
+|               1 | toronto      |
+|               1 | usa          |
+|               1 | wdc          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select count(city) as "no of customers",city from customers group by city;
++-----------------+--------------+
+| no of customers | city         |
++-----------------+--------------+
+|               1 | brazil       |
+|               1 | south africa |
+|               1 | toronto      |
+|               1 | usa          |
+|               1 | wdc          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select count(city) as "no of customers",city from customers group by city;
++-----------------+--------------+
+| no of customers | city         |
++-----------------+--------------+
+|               1 | brazil       |
+|               1 | south africa |
+|               1 | toronto      |
+|               1 | usa          |
+|               1 | wdc          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers where name like 't%',city from customers group by city;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'city from customers group by city' at line 1
+MariaDB [csd2204v18]> select * from customers where name like 't%',name from customers group by city;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'name from customers group by city' at line 1
+MariaDB [csd2204v18]> select * from customers where name like 't% group by city;
+    '>  ';
+Empty set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers where name like 't%,from customers group by city;
+    '>  ';
+Empty set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers where name like 'a%,from customers group by city;
+    '> ";
+    '> ';
+Empty set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers group by city like 't%';;
++------------+-------------+----------+--------------+---------+------------+
+| customerid | name        | nickname | address      | city    | postalcode |
++------------+-------------+----------+--------------+---------+------------+
+|          2 | bob marlery | bob      | keele street | wdc     |     123456 |
+|          1 | arsh        | arsh     | north york   | toronto |     235614 |
++------------+-------------+----------+--------------+---------+------------+
+2 rows in set (0.00 sec)
+
+ERROR: No query specified
+
+MariaDB [csd2204v18]> select * from customers group by city like 't%';
++------------+-------------+----------+--------------+---------+------------+
+| customerid | name        | nickname | address      | city    | postalcode |
++------------+-------------+----------+--------------+---------+------------+
+|          2 | bob marlery | bob      | keele street | wdc     |     123456 |
+|          1 | arsh        | arsh     | north york   | toronto |     235614 |
++------------+-------------+----------+--------------+---------+------------+
+2 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select min(postalcode) from customers;;
++-----------------+
+| min(postalcode) |
++-----------------+
+|          123456 |
++-----------------+
+1 row in set (0.00 sec)
+
+ERROR: No query specified
+
+MariaDB [csd2204v18]> select min(postalcode) from customers;
++-----------------+
+| min(postalcode) |
++-----------------+
+|          123456 |
++-----------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select max(postalcode) from customers;
++-----------------+
+| max(postalcode) |
++-----------------+
+|          645287 |
++-----------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select avg(postalcode) from customers;
++-----------------+
+| avg(postalcode) |
++-----------------+
+|     292459.4000 |
++-----------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers group by city where name like 't%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where name like 't%'' at line 1
+MariaDB [csd2204v18]> select * from customers group by cit, where name like 't%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where name like 't%'' at line 1
+MariaDB [csd2204v18]> select * from customers group by city, where name like 't%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'where name like 't%'' at line 1
+MariaDB [csd2204v18]> select * from customers group by city like 't%';
++------------+-------------+----------+--------------+---------+------------+
+| customerid | name        | nickname | address      | city    | postalcode |
++------------+-------------+----------+--------------+---------+------------+
+|          2 | bob marlery | bob      | keele street | wdc     |     123456 |
+|          1 | arsh        | arsh     | north york   | toronto |     235614 |
++------------+-------------+----------+--------------+---------+------------+
+2 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers group by city having name like 't%';
++------------+--------------+----------+---------+------+------------+
+| customerid | name         | nickname | address | city | postalcode |
++------------+--------------+----------+---------+------+------------+
+|          5 | tony special | special  | cakwile | usa  |     330087 |
++------------+--------------+----------+---------+------+------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT SupplierName
+    -> FROM Suppliers
+    -> WHERE EXISTS (SELECT ProductName FROM Products WHERE SupplierId = Suppliers.supplierId AND Price < 20);
+ERROR 1146 (42S02): Table 'csd2204v18.suppliers' doesn't exist
+MariaDB [csd2204v18]> select * from customers group by city having name like 't%';
++------------+--------------+----------+---------+------+------------+
+| customerid | name         | nickname | address | city | postalcode |
++------------+--------------+----------+---------+------+------------+
+|          5 | tony special | special  | cakwile | usa  |     330087 |
++------------+--------------+----------+---------+------+------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers group by city having name like 't% and nickname 't%';
+    '> select * from customers group by city having name like 't%' and nickname 't%';
+    '>  ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 't%';
+select * from customers group by city having name like 't%' and nickname 't' at line 1
+MariaDB [csd2204v18]> select * from customers group by city having name like 't%' and nickname 't%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''t%'' at line 1
+MariaDB [csd2204v18]> select * from customers group by city having name,nickname like 't%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'nickname like 't%'' at line 1
+MariaDB [csd2204v18]> select * from customers group by city having(name,nickname) like 't%';
+ERROR 1241 (21000): Operand should contain 1 column(s)
+MariaDB [csd2204v18]> select * from customers group by city having(name) like 't%';
++------------+--------------+----------+---------+------+------------+
+| customerid | name         | nickname | address | city | postalcode |
++------------+--------------+----------+---------+------+------------+
+|          5 | tony special | special  | cakwile | usa  |     330087 |
++------------+--------------+----------+---------+------+------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers where customerid in(2'4) group by city having name like('b%) ordered by name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''4) group by city having name like('b%) ordered by name' at line 1
+MariaDB [csd2204v18]> SELECT COUNT(Customerid),city from customers GROUP BY name HAVING COUNT(Customerid) > 5;
+Empty set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(Customerid),city from customers GROUP BY name HAVING COUNT(Customerid) > 0;
++-------------------+--------------+
+| COUNT(Customerid) | city         |
++-------------------+--------------+
+|                 1 | toronto      |
+|                 1 | wdc          |
+|                 1 | brazil       |
+|                 1 | south africa |
+|                 1 | usa          |
++-------------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(Customerid),city from customers GROUP BY name HAVING COUNT(Customerid) > 1;
+Empty set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(Customerid),city from customers GROUP BY name HAVING COUNT(Customerid) > 1;
+Empty set (0.00 sec)
+
+MariaDB [csd2204v18]> select count(*) as "no of customers",city from customers group by city;
++-----------------+--------------+
+| no of customers | city         |
++-----------------+--------------+
+|               1 | brazil       |
+|               1 | south africa |
+|               1 | toronto      |
+|               1 | usa          |
+|               1 | wdc          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(no fo customers),city from customers GROUP BY name HAVING COUNT(Customerid) > 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'fo customers),city from customers GROUP BY name HAVING COUNT(Customerid) > 1' at line 1
+MariaDB [csd2204v18]> SELECT COUNT(customers),city from customers GROUP BY name HAVING COUNT(Customerid) > 1;
+ERROR 1054 (42S22): Unknown column 'customers' in 'field list'
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(Customerid) > 1;
+Empty set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(Customerid) > 1 order by count;
+ERROR 1054 (42S22): Unknown column 'count' in 'order clause'
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(Customerid) > 1 order by count(customerid) desc;
+Empty set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(Customerid) > 0 order by count(customerid) desc;
++-----------------+--------------+
+| COUNT(nickname) | city         |
++-----------------+--------------+
+|               1 | brazil       |
+|               1 | toronto      |
+|               1 | south africa |
+|               1 | wdc          |
+|               1 | usa          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(Customerid) > 0 order by count(city) desc;
++-----------------+--------------+
+| COUNT(nickname) | city         |
++-----------------+--------------+
+|               1 | brazil       |
+|               1 | toronto      |
+|               1 | south africa |
+|               1 | wdc          |
+|               1 | usa          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(Customerid) > 0 order by count(city) asc;
++-----------------+--------------+
+| COUNT(nickname) | city         |
++-----------------+--------------+
+|               1 | brazil       |
+|               1 | toronto      |
+|               1 | south africa |
+|               1 | wdc          |
+|               1 | usa          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(Customerid) > 0 order by count(nickname) asc;
++-----------------+--------------+
+| COUNT(nickname) | city         |
++-----------------+--------------+
+|               1 | brazil       |
+|               1 | toronto      |
+|               1 | south africa |
+|               1 | wdc          |
+|               1 | usa          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name;
++-----------------+--------------+
+| COUNT(nickname) | city         |
++-----------------+--------------+
+|               1 | toronto      |
+|               1 | wdc          |
+|               1 | brazil       |
+|               1 | south africa |
+|               1 | usa          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),from customers GROUP BY name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from customers GROUP BY name' at line 1
+MariaDB [csd2204v18]> SELECT COUNT(nickname),name from customers GROUP BY name;
++-----------------+---------------+
+| COUNT(nickname) | name          |
++-----------------+---------------+
+|               1 | arsh          |
+|               1 | bob marlery   |
+|               1 | cherlies thon |
+|               1 | denil jack    |
+|               1 | tony special  |
++-----------------+---------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),name from customers GROUP BY;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [csd2204v18]> SELECT COUNT(nickname),name from customers GROUP BY city;
++-----------------+---------------+
+| COUNT(nickname) | name          |
++-----------------+---------------+
+|               1 | cherlies thon |
+|               1 | denil jack    |
+|               1 | arsh          |
+|               1 | tony special  |
+|               1 | bob marlery   |
++-----------------+---------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(Customerid) > 0 order by count(nickname) asc;
++-----------------+--------------+
+| COUNT(nickname) | city         |
++-----------------+--------------+
+|               1 | brazil       |
+|               1 | toronto      |
+|               1 | south africa |
+|               1 | wdc          |
+|               1 | usa          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(postalcode) > 0 order by count(nickname) asc;
++-----------------+--------------+
+| COUNT(nickname) | city         |
++-----------------+--------------+
+|               1 | brazil       |
+|               1 | toronto      |
+|               1 | south africa |
+|               1 | wdc          |
+|               1 | usa          |
++-----------------+--------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(postalcode) > 30 order by count(nickname) asc;
+Empty set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT COUNT(nickname),city from customers GROUP BY name HAVING COUNT(postalcode) > 2 order by count(nickname) asc;
+Empty set (0.00 sec)
+
+MariaDB [csd2204v18]> select city,count(city)*100/10 as "customers %" from customers groupby city;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'city' at line 1
+MariaDB [csd2204v18]> select city,count(city)*100/10 as "customers %" from customers group by city;
++--------------+-------------+
+| city         | customers % |
++--------------+-------------+
+| brazil       |     10.0000 |
+| south africa |     10.0000 |
+| toronto      |     10.0000 |
+| usa          |     10.0000 |
+| wdc          |     10.0000 |
++--------------+-------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers limit 3;
++------------+---------------+----------+-----------------------+---------+------------+
+| customerid | name          | nickname | address               | city    | postalcode |
++------------+---------------+----------+-----------------------+---------+------------+
+|          1 | arsh          | arsh     | north york            | toronto |     235614 |
+|          2 | bob marlery   | bob      | keele street          | wdc     |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil  |     127853 |
++------------+---------------+----------+-----------------------+---------+------------+
+3 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers limit -3;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-3' at line 1
+MariaDB [csd2204v18]> select * from customers limit '%3';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''%3'' at line 1
+MariaDB [csd2204v18]> select * from customers limit '%3';;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''%3'' at line 1
+ERROR: No query specified
+
+MariaDB [csd2204v18]> select * from customers order by customerid asc having limit '%3';;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'having limit '%3'' at line 1
+ERROR: No query specified
+
+MariaDB [csd2204v18]> select * from customers order by customerid desc limit '%3';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ''%3'' at line 1
+MariaDB [csd2204v18]> select * from customers order by customerid desc limit 3;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
++------------+---------------+----------+-----------------------+--------------+------------+
+3 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by customerid asc limit 3;
++------------+---------------+----------+-----------------------+---------+------------+
+| customerid | name          | nickname | address               | city    | postalcode |
++------------+---------------+----------+-----------------------+---------+------------+
+|          1 | arsh          | arsh     | north york            | toronto |     235614 |
+|          2 | bob marlery   | bob      | keele street          | wdc     |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil  |     127853 |
++------------+---------------+----------+-----------------------+---------+------------+
+3 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers order by customerid desc limit 3 having customerid asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'having customerid asc' at line 1
+MariaDB [csd2204v18]> select * from customers ordered by asc(select * from customers order by customerid desc limit 3);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'by asc(select * from customers order by customerid desc limit 3)' at line 1
+MariaDB [csd2204v18]> select * from customers ordered by asc (select * from customers order by customerid desc limit 3);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'by asc (select * from customers order by customerid desc limit 3)' at line 1
+MariaDB [csd2204v18]> select * from customers order by asc(select * from customers order by customerid desc limit 3);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'asc(select * from customers order by customerid desc limit 3)' at line 1
+MariaDB [csd2204v18]> (select * from customers order by customerid desc limit 3) order by customerid;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
++------------+---------------+----------+-----------------------+--------------+------------+
+3 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from (select * from customers order by customerid desc limit 3) order by customerid;
+ERROR 1248 (42000): Every derived table must have its own alias
+MariaDB [csd2204v18]> select * from (select * from customers order by customerid desc limit 3)j1 order by customerid;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
++------------+---------------+----------+-----------------------+--------------+------------+
+3 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> insert into customers(customerid,name) values(6,'keshav');
+Query OK, 1 row affected (0.26 sec)
+
+MariaDB [csd2204v18]> select * from customers
+    ->
+    -> select * from customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'select * from customers' at line 3
+MariaDB [csd2204v18]> select * from customers;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
+|          6 | keshav        | NULL     | NULL                  | NULL         |       NULL |
++------------+---------------+----------+-----------------------+--------------+------------+
+6 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers where nickname is null;
++------------+--------+----------+---------+------+------------+
+| customerid | name   | nickname | address | city | postalcode |
++------------+--------+----------+---------+------+------------+
+|          6 | keshav | NULL     | NULL    | NULL |       NULL |
++------------+--------+----------+---------+------+------------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> select * from customers where nickname is not  null;
++------------+---------------+----------+-----------------------+--------------+------------+
+| customerid | name          | nickname | address               | city         | postalcode |
++------------+---------------+----------+-----------------------+--------------+------------+
+|          1 | arsh          | arsh     | north york            | toronto      |     235614 |
+|          2 | bob marlery   | bob      | keele street          | wdc          |     123456 |
+|          3 | cherlies thon | charles  | empire state building | brazil       |     127853 |
+|          4 | denil jack    | gj       | kemmedy               | south africa |     645287 |
+|          5 | tony special  | special  | cakwile               | usa          |     330087 |
++------------+---------------+----------+-----------------------+--------------+------------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> exit
+Bye
+
+730110@128-IMAC09 c:\xampp
+# mysqldump -u root -p csd2204v18 > day4.sql
+Enter password:
+
+730110@128-IMAC09 c:\xampp
+#
+730110@128-IMAC09 c:\xampp
+#
