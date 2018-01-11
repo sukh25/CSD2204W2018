@@ -1,0 +1,298 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.15063}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9\par
+Setting environment for using XAMPP for Windows.\par
+sukhm@LAPTOP-2MISBKL4 c:\\xampp\par
+# mysql -u root -p\par
+Enter password:\par
+Welcome to the MariaDB monitor.  Commands end with ; or \\g.\par
+Your MariaDB connection id is 2\par
+Server version: 10.1.29-MariaDB mariadb.org binary distribution\par
+\par
+Copyright (c) 2000, 2017, Oracle, MariaDB Corporation Ab and others.\par
+\par
+Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.\par
+\par
+MariaDB [(none)]>\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+5 rows in set (0.32 sec)\par
+\par
+MariaDB [(none)]> create database csd2204v18;\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| csd2204v18         |\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [(none)]> use database csd2204v18;\par
+ERROR 1049 (42000): Unknown database 'database'\par
+MariaDB [(none)]> use database csd2204v18\par
+ERROR 1049 (42000): Unknown database 'database'\par
+MariaDB [(none)]> use database csd2204v18\par
+ERROR 1049 (42000): Unknown database 'database'\par
+MariaDB [(none)]> use databases csd2204v18;\par
+ERROR 1049 (42000): Unknown database 'databases'\par
+MariaDB [(none)]> show databases;\par
++--------------------+\par
+| Database           |\par
++--------------------+\par
+| csd2204v18         |\par
+| information_schema |\par
+| mysql              |\par
+| performance_schema |\par
+| phpmyadmin         |\par
+| test               |\par
++--------------------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [(none)]> use csd2204v18\par
+Database changed\par
+MariaDB [csd2204v18]> create table customers(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nick name varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postal code int(6)\par
+    -> );\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'name varchar(10),\par
+address varchar(50),\par
+city varchar(30),\par
+postal code int(6)\par
+)' at line 4\par
+MariaDB [csd2204v18]> create table customers(\par
+    ->  customerid int(2),\par
+    -> name varchar(40),\par
+    ->  nick name varchar(10),\par
+    -> address varchar(50),\par
+    ->  city varchar(30),\par
+    ->  postalcode int(6)\par
+    -> );\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'name varchar(10),\par
+address varchar(50),\par
+ city varchar(30),\par
+ postalcode int(6)\par
+)' at line 4\par
+MariaDB [csd2204v18]> create table customers(\par
+    -> customerid int(2),\par
+    -> name varchar(40),\par
+    -> nick name varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6)\par
+    -> );\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'name varchar(10),\par
+address varchar(50),\par
+city varchar(30),\par
+postalcode int(6)\par
+)' at line 4\par
+MariaDB [csd2204v18]> create table customers(\par
+    ->  customerid int(2),\par
+    -> nickname varchar(10),\par
+    -> address varchar(50),\par
+    -> city varchar(30),\par
+    -> postalcode int(6)\par
+    -> );\par
+Query OK, 0 rows affected (0.50 sec)\par
+\par
+MariaDB [csd2204v18]> ALTER TABLE table_name\par
+    ->\par
+    -> ALTER TABLE table_name\par
+    -> ADD column_name datatype;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'TABLE table_name\par
+ADD column_name datatype' at line 3\par
+MariaDB [csd2204v18]>  ALTER TABLE customers\par
+    -> ADD column_name varchar(40);\par
+Query OK, 0 rows affected (0.44 sec)\par
+Records: 0  Duplicates: 0  Warnings: 0\par
+\par
+MariaDB [csd2204v18]> show tables;\par
++----------------------+\par
+| Tables_in_csd2204v18 |\par
++----------------------+\par
+| customers            |\par
++----------------------+\par
+1 row in set (0.04 sec)\par
+\par
+MariaDB [csd2204v18]> describe customers;\par
++-------------+-------------+------+-----+---------+-------+\par
+| Field       | Type        | Null | Key | Default | Extra |\par
++-------------+-------------+------+-----+---------+-------+\par
+| customerid  | int(2)      | YES  |     | NULL    |       |\par
+| nickname    | varchar(10) | YES  |     | NULL    |       |\par
+| address     | varchar(50) | YES  |     | NULL    |       |\par
+| city        | varchar(30) | YES  |     | NULL    |       |\par
+| postalcode  | int(6)      | YES  |     | NULL    |       |\par
+| column_name | varchar(40) | YES  |     | NULL    |       |\par
++-------------+-------------+------+-----+---------+-------+\par
+6 rows in set (0.12 sec)\par
+\par
+MariaDB [csd2204v18]> alter table customers\par
+    -> ass column;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'column' at line 2\par
+MariaDB [csd2204v18]> sp_rename 'customers.column_name', 'name','COLUMN';\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sp_rename 'customers.column_name', 'name','COLUMN'' at line 1\par
+MariaDB [csd2204v18]> sp_rename 'customers.column_name', 'name','COLUMN';\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sp_rename 'customers.column_name', 'name','COLUMN'' at line 1\par
+MariaDB [csd2204v18]> sp_rename'customers.column_name','name','COLUMN';\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sp_rename'customers.column_name','name','COLUMN'' at line 1\par
+MariaDB [csd2204v18]>  sp_rename 'customers.column_name', 'name','COLUMN';\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sp_rename 'customers.column_name', 'name','COLUMN'' at line 1\par
+MariaDB [csd2204v18]>  sp_rename 'customers.column_name', 'name', 'COLUMN';\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sp_rename 'customers.column_name', 'name', 'COLUMN'' at line 1\par
+MariaDB [csd2204v18]>  sp_rename 'customers.column_name' , 'name' , 'COLUMN';\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'sp_rename 'customers.column_name' , 'name' , 'COLUMN'' at line 1\par
+MariaDB [csd2204v18]> ALTER TABLE customers CHANGE `column_name` `name` varchar(40);\par
+Query OK, 0 rows affected (0.15 sec)\par
+Records: 0  Duplicates: 0  Warnings: 0\par
+\par
+MariaDB [csd2204v18]> describe customers;\par
++------------+-------------+------+-----+---------+-------+\par
+| Field      | Type        | Null | Key | Default | Extra |\par
++------------+-------------+------+-----+---------+-------+\par
+| customerid | int(2)      | YES  |     | NULL    |       |\par
+| nickname   | varchar(10) | YES  |     | NULL    |       |\par
+| address    | varchar(50) | YES  |     | NULL    |       |\par
+| city       | varchar(30) | YES  |     | NULL    |       |\par
+| postalcode | int(6)      | YES  |     | NULL    |       |\par
+| name       | varchar(40) | YES  |     | NULL    |       |\par
++------------+-------------+------+-----+---------+-------+\par
+6 rows in set (0.00 sec)\par
+\par
+MariaDB [csd2204v18]> show create table customers;\par
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+| Table     | Create Table                                                                                                                                                                                                                                                                                |\par
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+| customers | CREATE TABLE `customers` (\par
+  `customerid` int(2) DEFAULT NULL,\par
+  `nickname` varchar(10) DEFAULT NULL,\par
+  `address` varchar(50) DEFAULT NULL,\par
+  `city` varchar(30) DEFAULT NULL,\par
+  `postalcode` int(6) DEFAULT NULL,\par
+  `name` varchar(40) DEFAULT NULL\par
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |\par
++-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\par
+1 row in set (0.03 sec)\par
+\par
+MariaDB [csd2204v18]> insert into customer values(1,'pul','north york','toronto',123456,'pulkit');\par
+ERROR 1146 (42S02): Table 'csd2204v18.customer' doesn't exist\par
+MariaDB [csd2204v18]> insert into customers values(1,'pul','north york','toronto',123456,'pulkit');\par
+Query OK, 1 row affected (0.07 sec)\par
+\par
+MariaDB [csd2204v18]> insert into customers values(2,'neel','keel street','toronto',234578,'neelam');\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204v18]> insert into customers values(3,'aru','moffatt ave','brampton',763428,'arsh');\par
+Query OK, 1 row affected (0.05 sec)\par
+\par
+MariaDB [csd2204v18]> insert into customers values(4,'priya','steels ave','brampton',128937,'supriya');\par
+Query OK, 1 row affected (0.05 sec)\par
+\par
+MariaDB [csd2204v18]> insert into customers values(5,'amu','denim drive','scarbrough',765389,'aman');\par
+Query OK, 1 row affected (0.07 sec)\par
+\par
+MariaDB [csd2204v18]> insert into customers values(6,'nabi','mclogian','brampton',354894,'nabpreet');\par
+Query OK, 1 row affected (0.07 sec)\par
+\par
+MariaDB [csd2204v18]> insert into customers values(7,'sukh','hurrantrio road','brampton',244859,'sukhman');\par
+Query OK, 1 row affected (0.06 sec)\par
+\par
+MariaDB [csd2204v18]> select*from customer;\par
+ERROR 1146 (42S02): Table 'csd2204v18.customer' doesn't exist\par
+MariaDB [csd2204v18]> select*from customers;\par
++------------+----------+-----------------+------------+------------+----------+\par
+| customerid | nickname | address         | city       | postalcode | name     |\par
++------------+----------+-----------------+------------+------------+----------+\par
+|          1 | pul      | north york      | toronto    |     123456 | pulkit   |\par
+|          2 | neel     | keel street     | toronto    |     234578 | neelam   |\par
+|          3 | aru      | moffatt ave     | brampton   |     763428 | arsh     |\par
+|          4 | priya    | steels ave      | brampton   |     128937 | supriya  |\par
+|          5 | amu      | denim drive     | scarbrough |     765389 | aman     |\par
+|          6 | nabi     | mclogian        | brampton   |     354894 | nabpreet |\par
+|          7 | sukh     | hurrantrio road | brampton   |     244859 | sukhman  |\par
++------------+----------+-----------------+------------+------------+----------+\par
+7 rows in set (0.03 sec)\par
+\par
+MariaDB [csd2204v18]> select address,name,\par
+    -> form customers;\par
+ERROR 1054 (42S22): Unknown column 'address' in 'field list'\par
+MariaDB [csd2204v18]> select name,nickname,\par
+    -> from customers;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from customers' at line 2\par
+MariaDB [csd2204v18]> select name,nickname,\par
+    -> from customers;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'from customers' at line 2\par
+MariaDB [csd2204v18]> select * from customers where name like 'a%';\par
++------------+----------+-------------+------------+------------+------+\par
+| customerid | nickname | address     | city       | postalcode | name |\par
++------------+----------+-------------+------------+------------+------+\par
+|          3 | aru      | moffatt ave | brampton   |     763428 | arsh |\par
+|          5 | amu      | denim drive | scarbrough |     765389 | aman |\par
++------------+----------+-------------+------------+------------+------+\par
+2 rows in set (0.12 sec)\par
+\par
+MariaDB [csd2204v18]> select * from customersid between 2 and 7;\par
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'between 2 and 7' at line 1\par
+MariaDB [csd2204v18]> select * from costomers where customesid between 2 and 7;\par
+ERROR 1146 (42S02): Table 'csd2204v18.costomers' doesn't exist\par
+MariaDB [csd2204v18]> select * from customers where customesid between 2 and 7;\par
+ERROR 1054 (42S22): Unknown column 'customesid' in 'where clause'\par
+MariaDB [csd2204v18]> select * from customers where customerid between 2 and 7;\par
++------------+----------+-----------------+------------+------------+----------+\par
+| customerid | nickname | address         | city       | postalcode | name     |\par
++------------+----------+-----------------+------------+------------+----------+\par
+|          2 | neel     | keel street     | toronto    |     234578 | neelam   |\par
+|          3 | aru      | moffatt ave     | brampton   |     763428 | arsh     |\par
+|          4 | priya    | steels ave      | brampton   |     128937 | supriya  |\par
+|          5 | amu      | denim drive     | scarbrough |     765389 | aman     |\par
+|          6 | nabi     | mclogian        | brampton   |     354894 | nabpreet |\par
+|          7 | sukh     | hurrantrio road | brampton   |     244859 | sukhman  |\par
++------------+----------+-----------------+------------+------------+----------+\par
+6 rows in set (0.05 sec)\par
+\par
+MariaDB [csd2204v18]> select * from customers where name like ' r%';\par
+Empty set (0.00 sec)\par
+\par
+MariaDB [csd2204v18]> select * from customers where nickname like ' r%';\par
+Empty set (0.00 sec)\par
+\par
+MariaDB [csd2204v18]> select * from customers where nickname like ' a%';\par
+Empty set (0.00 sec)\par
+\par
+MariaDB [csd2204v18]> select * from customers where nickname like '_a%';\par
++------------+----------+----------+----------+------------+----------+\par
+| customerid | nickname | address  | city     | postalcode | name     |\par
++------------+----------+----------+----------+------------+----------+\par
+|          6 | nabi     | mclogian | brampton |     354894 | nabpreet |\par
++------------+----------+----------+----------+------------+----------+\par
+1 row in set (0.00 sec)\par
+\par
+MariaDB [csd2204v18]> select * from customers where nickname like '_a_i%';\par
++------------+----------+----------+----------+------------+----------+\par
+| customerid | nickname | address  | city     | postalcode | name     |\par
++------------+----------+----------+----------+------------+----------+\par
+|          6 | nabi     | mclogian | brampton |     354894 | nabpreet |\par
++------------+----------+----------+----------+------------+----------+\par
+1 row in set (0.00 sec)\par
+\par
+\par
+}
+ 
