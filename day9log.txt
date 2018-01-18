@@ -1,0 +1,755 @@
+MariaDB [csd2204v18]> SELECT first_name, last_name
+    -> FROM employees 
+    -> WHERE department_id
+    -> IN (SELECT department_id
+    -> FROM departments 
+    -> WHERE department_name='IT');
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Alexander  | Hunold    |
+| Bruce      | Ernst     |
+| David      | Austin    |
+| Valli      | Pataballa |
+| Diana      | Lorentz   |
++------------+-----------+
+5 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT first_name, last_name FROM employees 
+    -> WHERE manager_id in 
+    -> (select employee_id FROM employees 
+    -> WHERE department_id
+    -> IN (SELECT department_id
+    -> FROM departments WHERE location_id
+    -> IN (SELECT location_id FROM locations WHERE country_id='US')));
++-------------+-------------+
+| first_name  | last_name   |
++-------------+-------------+
+| Neena       | Kochhar     |
+| Lex         | De Haan     |
+| Alexander   | Hunold      |
+| Bruce       | Ernst       |
+| David       | Austin      |
+| Valli       | Pataballa   |
+| Diana       | Lorentz     |
+| Nancy       | Greenberg   |
+| Daniel      | Faviet      |
+| John        | Chen        |
+| Ismael      | Sciarra     |
+| Jose Manuel | Urman       |
+| Luis        | Popp        |
+| Den         | Raphaely    |
+| Alexander   | Khoo        |
+| Shelli      | Baida       |
+| Sigal       | Tobias      |
+| Guy         | Himuro      |
+| Karen       | Colmenares  |
+| Matthew     | Weiss       |
+| Adam        | Fripp       |
+| Payam       | Kaufling    |
+| Shanta      | Vollman     |
+| Kevin       | Mourgos     |
+| Julia       | Nayer       |
+| Irene       | Mikkilineni |
+| James       | Landry      |
+| Steven      | Markle      |
+| Laura       | Bissot      |
+| Mozhe       | Atkinson    |
+| James       | Marlow      |
+| TJ          | Olson       |
+| Jason       | Mallin      |
+| Michael     | Rogers      |
+| Ki          | Gee         |
+| Hazel       | Philtanker  |
+| Renske      | Ladwig      |
+| Stephen     | Stiles      |
+| John        | Seo         |
+| Joshua      | Patel       |
+| Trenna      | Rajs        |
+| Curtis      | Davies      |
+| Randall     | Matos       |
+| Peter       | Vargas      |
+| John        | Russell     |
+| Karen       | Partners    |
+| Alberto     | Errazuriz   |
+| Gerald      | Cambrault   |
+| Eleni       | Zlotkey     |
+| Winston     | Taylor      |
+| Jean        | Fleaur      |
+| Martha      | Sullivan    |
+| Girard      | Geoni       |
+| Nandita     | Sarchand    |
+| Alexis      | Bull        |
+| Julia       | Dellinger   |
+| Anthony     | Cabrio      |
+| Kelly       | Chung       |
+| Jennifer    | Dilly       |
+| Timothy     | Gates       |
+| Randall     | Perkins     |
+| Sarah       | Bell        |
+| Britney     | Everett     |
+| Samuel      | McCain      |
+| Vance       | Jones       |
+| Alana       | Walsh       |
+| Kevin       | Feeney      |
+| Donald      | OConnell    |
+| Douglas     | Grant       |
+| Jennifer    | Whalen      |
+| Michael     | Hartstein   |
+| Susan       | Mavris      |
+| Hermann     | Baer        |
+| Shelley     | Higgins     |
+| William     | Gietz       |
++-------------+-------------+
+75 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT first_name, last_name
+    -> FROM employees 
+    -> WHERE (employee_id IN (SELECT manager_id FROM employees));
++------------+-----------+
+| first_name | last_name |
++------------+-----------+
+| Steven     | King      |
+| Neena      | Kochhar   |
+| Lex        | De Haan   |
+| Alexander  | Hunold    |
+| Nancy      | Greenberg |
+| Den        | Raphaely  |
+| Matthew    | Weiss     |
+| Adam       | Fripp     |
+| Payam      | Kaufling  |
+| Shanta     | Vollman   |
+| Kevin      | Mourgos   |
+| John       | Russell   |
+| Karen      | Partners  |
+| Alberto    | Errazuriz |
+| Gerald     | Cambrault |
+| Eleni      | Zlotkey   |
+| Michael    | Hartstein |
+| Shelley    | Higgins   |
++------------+-----------+
+18 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT first_name, last_name, salary 
+    -> FROM employees 
+    -> WHERE salary > (SELECT AVG(salary) FROM employees);
++-------------+------------+----------+
+| first_name  | last_name  | salary   |
++-------------+------------+----------+
+| Steven      | King       | 24000.00 |
+| Neena       | Kochhar    | 17000.00 |
+| Lex         | De Haan    | 17000.00 |
+| Alexander   | Hunold     |  9000.00 |
+| Nancy       | Greenberg  | 12000.00 |
+| Daniel      | Faviet     |  9000.00 |
+| John        | Chen       |  8200.00 |
+| Ismael      | Sciarra    |  7700.00 |
+| Jose Manuel | Urman      |  7800.00 |
+| Luis        | Popp       |  6900.00 |
+| Den         | Raphaely   | 11000.00 |
+| Matthew     | Weiss      |  8000.00 |
+| Adam        | Fripp      |  8200.00 |
+| Payam       | Kaufling   |  7900.00 |
+| Shanta      | Vollman    |  6500.00 |
+| John        | Russell    | 14000.00 |
+| Karen       | Partners   | 13500.00 |
+| Alberto     | Errazuriz  | 12000.00 |
+| Gerald      | Cambrault  | 11000.00 |
+| Eleni       | Zlotkey    | 10500.00 |
+| Peter       | Tucker     | 10000.00 |
+| David       | Bernstein  |  9500.00 |
+| Peter       | Hall       |  9000.00 |
+| Christopher | Olsen      |  8000.00 |
+| Nanette     | Cambrault  |  7500.00 |
+| Oliver      | Tuvault    |  7000.00 |
+| Janette     | King       | 10000.00 |
+| Patrick     | Sully      |  9500.00 |
+| Allan       | McEwen     |  9000.00 |
+| Lindsey     | Smith      |  8000.00 |
+| Louise      | Doran      |  7500.00 |
+| Sarath      | Sewall     |  7000.00 |
+| Clara       | Vishney    | 10500.00 |
+| Danielle    | Greene     |  9500.00 |
+| Mattea      | Marvins    |  7200.00 |
+| David       | Lee        |  6800.00 |
+| Lisa        | Ozer       | 11500.00 |
+| Harrison    | Bloom      | 10000.00 |
+| Tayler      | Fox        |  9600.00 |
+| William     | Smith      |  7400.00 |
+| Elizabeth   | Bates      |  7300.00 |
+| Ellen       | Abel       | 11000.00 |
+| Alyssa      | Hutton     |  8800.00 |
+| Jonathon    | Taylor     |  8600.00 |
+| Jack        | Livingston |  8400.00 |
+| Kimberely   | Grant      |  7000.00 |
+| Michael     | Hartstein  | 13000.00 |
+| Susan       | Mavris     |  6500.00 |
+| Hermann     | Baer       | 10000.00 |
+| Shelley     | Higgins    | 12000.00 |
+| William     | Gietz      |  8300.00 |
++-------------+------------+----------+
+51 rows in set (0.03 sec)
+
+MariaDB [csd2204v18]> SELECT first_name, last_name, salary 
+    -> FROM employees 
+    -> WHERE salary > (SELECT AVG(salary) FROM employees);
++-------------+------------+----------+
+| first_name  | last_name  | salary   |
++-------------+------------+----------+
+| Steven      | King       | 24000.00 |
+| Neena       | Kochhar    | 17000.00 |
+| Lex         | De Haan    | 17000.00 |
+| Alexander   | Hunold     |  9000.00 |
+| Nancy       | Greenberg  | 12000.00 |
+| Daniel      | Faviet     |  9000.00 |
+| John        | Chen       |  8200.00 |
+| Ismael      | Sciarra    |  7700.00 |
+| Jose Manuel | Urman      |  7800.00 |
+| Luis        | Popp       |  6900.00 |
+| Den         | Raphaely   | 11000.00 |
+| Matthew     | Weiss      |  8000.00 |
+| Adam        | Fripp      |  8200.00 |
+| Payam       | Kaufling   |  7900.00 |
+| Shanta      | Vollman    |  6500.00 |
+| John        | Russell    | 14000.00 |
+| Karen       | Partners   | 13500.00 |
+| Alberto     | Errazuriz  | 12000.00 |
+| Gerald      | Cambrault  | 11000.00 |
+| Eleni       | Zlotkey    | 10500.00 |
+| Peter       | Tucker     | 10000.00 |
+| David       | Bernstein  |  9500.00 |
+| Peter       | Hall       |  9000.00 |
+| Christopher | Olsen      |  8000.00 |
+| Nanette     | Cambrault  |  7500.00 |
+| Oliver      | Tuvault    |  7000.00 |
+| Janette     | King       | 10000.00 |
+| Patrick     | Sully      |  9500.00 |
+| Allan       | McEwen     |  9000.00 |
+| Lindsey     | Smith      |  8000.00 |
+| Louise      | Doran      |  7500.00 |
+| Sarath      | Sewall     |  7000.00 |
+| Clara       | Vishney    | 10500.00 |
+| Danielle    | Greene     |  9500.00 |
+| Mattea      | Marvins    |  7200.00 |
+| David       | Lee        |  6800.00 |
+| Lisa        | Ozer       | 11500.00 |
+| Harrison    | Bloom      | 10000.00 |
+| Tayler      | Fox        |  9600.00 |
+| William     | Smith      |  7400.00 |
+| Elizabeth   | Bates      |  7300.00 |
+| Ellen       | Abel       | 11000.00 |
+| Alyssa      | Hutton     |  8800.00 |
+| Jonathon    | Taylor     |  8600.00 |
+| Jack        | Livingston |  8400.00 |
+| Kimberely   | Grant      |  7000.00 |
+| Michael     | Hartstein  | 13000.00 |
+| Susan       | Mavris     |  6500.00 |
+| Hermann     | Baer       | 10000.00 |
+| Shelley     | Higgins    | 12000.00 |
+| William     | Gietz      |  8300.00 |
++-------------+------------+----------+
+51 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT first_name, last_name, salary 
+    -> FROM employees 
+    -> WHERE employees.salary = (SELECT min_salary
+    -> FROM jobs    
+    -> WHERE employees.job_id = jobs.job_id);
++------------+------------+---------+
+| first_name | last_name  | salary  |
++------------+------------+---------+
+| Karen      | Colmenares | 2500.00 |
+| Martha     | Sullivan   | 2500.00 |
+| Randall    | Perkins    | 2500.00 |
++------------+------------+---------+
+3 rows in set (0.04 sec)
+
+MariaDB [csd2204v18]> SELECT first_name, last_name, salary 
+    -> FROM employees 
+    -> WHERE department_id IN (SELECT department_id
+    -> FROM departments    
+    -> WHERE department_name LIKE 'IT%') 
+    -> AND salary > (SELECT avg(salary) 
+    -> FROM employees);
++------------+-----------+---------+
+| first_name | last_name | salary  |
++------------+-----------+---------+
+| Alexander  | Hunold    | 9000.00 |
++------------+-----------+---------+
+1 row in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT first_name, last_name, salary 
+    -> FROM employees 
+    -> WHERE salary > (SELECT salary FROM employees 
+    -> WHERE last_name = 'Bell') 
+    -> ORDER BY first_name;
++-------------+------------+----------+
+| first_name  | last_name  | salary   |
++-------------+------------+----------+
+| Adam        | Fripp      |  8200.00 |
+| Alberto     | Errazuriz  | 12000.00 |
+| Alexander   | Hunold     |  9000.00 |
+| Alexis      | Bull       |  4100.00 |
+| Allan       | McEwen     |  9000.00 |
+| Alyssa      | Hutton     |  8800.00 |
+| Amit        | Banda      |  6200.00 |
+| Bruce       | Ernst      |  6000.00 |
+| Charles     | Johnson    |  6200.00 |
+| Christopher | Olsen      |  8000.00 |
+| Clara       | Vishney    | 10500.00 |
+| Daniel      | Faviet     |  9000.00 |
+| Danielle    | Greene     |  9500.00 |
+| David       | Lee        |  6800.00 |
+| David       | Austin     |  4800.00 |
+| David       | Bernstein  |  9500.00 |
+| Den         | Raphaely   | 11000.00 |
+| Diana       | Lorentz    |  4200.00 |
+| Eleni       | Zlotkey    | 10500.00 |
+| Elizabeth   | Bates      |  7300.00 |
+| Ellen       | Abel       | 11000.00 |
+| Gerald      | Cambrault  | 11000.00 |
+| Harrison    | Bloom      | 10000.00 |
+| Hermann     | Baer       | 10000.00 |
+| Ismael      | Sciarra    |  7700.00 |
+| Jack        | Livingston |  8400.00 |
+| Janette     | King       | 10000.00 |
+| Jennifer    | Whalen     |  4400.00 |
+| John        | Russell    | 14000.00 |
+| John        | Chen       |  8200.00 |
+| Jonathon    | Taylor     |  8600.00 |
+| Jose Manuel | Urman      |  7800.00 |
+| Karen       | Partners   | 13500.00 |
+| Kevin       | Mourgos    |  5800.00 |
+| Kimberely   | Grant      |  7000.00 |
+| Lex         | De Haan    | 17000.00 |
+| Lindsey     | Smith      |  8000.00 |
+| Lisa        | Ozer       | 11500.00 |
+| Louise      | Doran      |  7500.00 |
+| Luis        | Popp       |  6900.00 |
+| Mattea      | Marvins    |  7200.00 |
+| Matthew     | Weiss      |  8000.00 |
+| Michael     | Hartstein  | 13000.00 |
+| Nancy       | Greenberg  | 12000.00 |
+| Nandita     | Sarchand   |  4200.00 |
+| Nanette     | Cambrault  |  7500.00 |
+| Neena       | Kochhar    | 17000.00 |
+| Oliver      | Tuvault    |  7000.00 |
+| Pat         | Fay        |  6000.00 |
+| Patrick     | Sully      |  9500.00 |
+| Payam       | Kaufling   |  7900.00 |
+| Peter       | Hall       |  9000.00 |
+| Peter       | Tucker     | 10000.00 |
+| Sarath      | Sewall     |  7000.00 |
+| Shanta      | Vollman    |  6500.00 |
+| Shelley     | Higgins    | 12000.00 |
+| Steven      | King       | 24000.00 |
+| Sundar      | Ande       |  6400.00 |
+| Sundita     | Kumar      |  6100.00 |
+| Susan       | Mavris     |  6500.00 |
+| Tayler      | Fox        |  9600.00 |
+| Valli       | Pataballa  |  4800.00 |
+| William     | Smith      |  7400.00 |
+| William     | Gietz      |  8300.00 |
++-------------+------------+----------+
+64 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT * FROM employees WHERE salary = (SELECT MIN(salary) FROM employees);
++-------------+------------+-----------+---------+--------------+------------+----------+---------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL   | PHONE_NUMBER | HIRE_DATE  | JOB_ID   | SALARY  | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+---------+--------------+------------+----------+---------+----------------+------------+---------------+
+|         132 | TJ         | Olson     | TJOLSON | 650.124.8234 | 1987-07-19 | ST_CLERK | 2100.00 |           0.00 |        121 |            50 |
++-------------+------------+-----------+---------+--------------+------------+----------+---------+----------------+------------+---------------+
+1 row in set (0.02 sec)
+
+MariaDB [csd2204v18]> SELECT * FROM employees 
+    -> WHERE salary > ALL(SELECT avg(salary)
+    -> FROM employees 
+    -> GROUP BY department_id);
++-------------+------------+-----------+-------+--------------+------------+---------+----------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL | PHONE_NUMBER | HIRE_DATE  | JOB_ID  | SALARY   | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+-------+--------------+------------+---------+----------+----------------+------------+---------------+
+|         100 | Steven     | King      | SKING | 515.123.4567 | 1987-06-17 | AD_PRES | 24000.00 |           0.00 |          0 |            90 |
++-------------+------------+-----------+-------+--------------+------------+---------+----------+----------------+------------+---------------+
+1 row in set (0.03 sec)
+
+MariaDB [csd2204v18]> SELECT first_name,last_name, job_id, salary 
+    -> FROM employees WHERE salary > 
+    -> ALL (SELECT salary FROM employees 
+    -> WHERE job_id = 'SH_CLERK') ORDER BY salary ;
++-------------+------------+------------+----------+
+| first_name  | last_name  | job_id     | salary   |
++-------------+------------+------------+----------+
+| Jennifer    | Whalen     | AD_ASST    |  4400.00 |
+| David       | Austin     | IT_PROG    |  4800.00 |
+| Valli       | Pataballa  | IT_PROG    |  4800.00 |
+| Kevin       | Mourgos    | ST_MAN     |  5800.00 |
+| Bruce       | Ernst      | IT_PROG    |  6000.00 |
+| Pat         | Fay        | MK_REP     |  6000.00 |
+| Sundita     | Kumar      | SA_REP     |  6100.00 |
+| Amit        | Banda      | SA_REP     |  6200.00 |
+| Charles     | Johnson    | SA_REP     |  6200.00 |
+| Sundar      | Ande       | SA_REP     |  6400.00 |
+| Susan       | Mavris     | HR_REP     |  6500.00 |
+| Shanta      | Vollman    | ST_MAN     |  6500.00 |
+| David       | Lee        | SA_REP     |  6800.00 |
+| Luis        | Popp       | FI_ACCOUNT |  6900.00 |
+| Sarath      | Sewall     | SA_REP     |  7000.00 |
+| Oliver      | Tuvault    | SA_REP     |  7000.00 |
+| Kimberely   | Grant      | SA_REP     |  7000.00 |
+| Mattea      | Marvins    | SA_REP     |  7200.00 |
+| Elizabeth   | Bates      | SA_REP     |  7300.00 |
+| William     | Smith      | SA_REP     |  7400.00 |
+| Nanette     | Cambrault  | SA_REP     |  7500.00 |
+| Louise      | Doran      | SA_REP     |  7500.00 |
+| Ismael      | Sciarra    | FI_ACCOUNT |  7700.00 |
+| Jose Manuel | Urman      | FI_ACCOUNT |  7800.00 |
+| Payam       | Kaufling   | ST_MAN     |  7900.00 |
+| Lindsey     | Smith      | SA_REP     |  8000.00 |
+| Matthew     | Weiss      | ST_MAN     |  8000.00 |
+| Christopher | Olsen      | SA_REP     |  8000.00 |
+| Adam        | Fripp      | ST_MAN     |  8200.00 |
+| John        | Chen       | FI_ACCOUNT |  8200.00 |
+| William     | Gietz      | AC_ACCOUNT |  8300.00 |
+| Jack        | Livingston | SA_REP     |  8400.00 |
+| Jonathon    | Taylor     | SA_REP     |  8600.00 |
+| Alyssa      | Hutton     | SA_REP     |  8800.00 |
+| Allan       | McEwen     | SA_REP     |  9000.00 |
+| Peter       | Hall       | SA_REP     |  9000.00 |
+| Alexander   | Hunold     | IT_PROG    |  9000.00 |
+| Daniel      | Faviet     | FI_ACCOUNT |  9000.00 |
+| Patrick     | Sully      | SA_REP     |  9500.00 |
+| Danielle    | Greene     | SA_REP     |  9500.00 |
+| David       | Bernstein  | SA_REP     |  9500.00 |
+| Tayler      | Fox        | SA_REP     |  9600.00 |
+| Hermann     | Baer       | PR_REP     | 10000.00 |
+| Harrison    | Bloom      | SA_REP     | 10000.00 |
+| Janette     | King       | SA_REP     | 10000.00 |
+| Peter       | Tucker     | SA_REP     | 10000.00 |
+| Eleni       | Zlotkey    | SA_MAN     | 10500.00 |
+| Clara       | Vishney    | SA_REP     | 10500.00 |
+| Gerald      | Cambrault  | SA_MAN     | 11000.00 |
+| Ellen       | Abel       | SA_REP     | 11000.00 |
+| Den         | Raphaely   | PU_MAN     | 11000.00 |
+| Lisa        | Ozer       | SA_REP     | 11500.00 |
+| Alberto     | Errazuriz  | SA_MAN     | 12000.00 |
+| Shelley     | Higgins    | AC_MGR     | 12000.00 |
+| Nancy       | Greenberg  | FI_MGR     | 12000.00 |
+| Michael     | Hartstein  | MK_MAN     | 13000.00 |
+| Karen       | Partners   | SA_MAN     | 13500.00 |
+| John        | Russell    | SA_MAN     | 14000.00 |
+| Lex         | De Haan    | AD_VP      | 17000.00 |
+| Neena       | Kochhar    | AD_VP      | 17000.00 |
+| Steven      | King       | AD_PRES    | 24000.00 |
++-------------+------------+------------+----------+
+61 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT first_name,last_name, job_id, salary 
+    -> FROM employees WHERE salary > 
+    -> ALL (SELECT salary FROM employees 
+    -> WHERE job_id = 'SH_CLERK') ORDER BY salary ;
++-------------+------------+------------+----------+
+| first_name  | last_name  | job_id     | salary   |
++-------------+------------+------------+----------+
+| Jennifer    | Whalen     | AD_ASST    |  4400.00 |
+| David       | Austin     | IT_PROG    |  4800.00 |
+| Valli       | Pataballa  | IT_PROG    |  4800.00 |
+| Kevin       | Mourgos    | ST_MAN     |  5800.00 |
+| Bruce       | Ernst      | IT_PROG    |  6000.00 |
+| Pat         | Fay        | MK_REP     |  6000.00 |
+| Sundita     | Kumar      | SA_REP     |  6100.00 |
+| Amit        | Banda      | SA_REP     |  6200.00 |
+| Charles     | Johnson    | SA_REP     |  6200.00 |
+| Sundar      | Ande       | SA_REP     |  6400.00 |
+| Susan       | Mavris     | HR_REP     |  6500.00 |
+| Shanta      | Vollman    | ST_MAN     |  6500.00 |
+| David       | Lee        | SA_REP     |  6800.00 |
+| Luis        | Popp       | FI_ACCOUNT |  6900.00 |
+| Sarath      | Sewall     | SA_REP     |  7000.00 |
+| Oliver      | Tuvault    | SA_REP     |  7000.00 |
+| Kimberely   | Grant      | SA_REP     |  7000.00 |
+| Mattea      | Marvins    | SA_REP     |  7200.00 |
+| Elizabeth   | Bates      | SA_REP     |  7300.00 |
+| William     | Smith      | SA_REP     |  7400.00 |
+| Nanette     | Cambrault  | SA_REP     |  7500.00 |
+| Louise      | Doran      | SA_REP     |  7500.00 |
+| Ismael      | Sciarra    | FI_ACCOUNT |  7700.00 |
+| Jose Manuel | Urman      | FI_ACCOUNT |  7800.00 |
+| Payam       | Kaufling   | ST_MAN     |  7900.00 |
+| Lindsey     | Smith      | SA_REP     |  8000.00 |
+| Matthew     | Weiss      | ST_MAN     |  8000.00 |
+| Christopher | Olsen      | SA_REP     |  8000.00 |
+| Adam        | Fripp      | ST_MAN     |  8200.00 |
+| John        | Chen       | FI_ACCOUNT |  8200.00 |
+| William     | Gietz      | AC_ACCOUNT |  8300.00 |
+| Jack        | Livingston | SA_REP     |  8400.00 |
+| Jonathon    | Taylor     | SA_REP     |  8600.00 |
+| Alyssa      | Hutton     | SA_REP     |  8800.00 |
+| Allan       | McEwen     | SA_REP     |  9000.00 |
+| Peter       | Hall       | SA_REP     |  9000.00 |
+| Alexander   | Hunold     | IT_PROG    |  9000.00 |
+| Daniel      | Faviet     | FI_ACCOUNT |  9000.00 |
+| Patrick     | Sully      | SA_REP     |  9500.00 |
+| Danielle    | Greene     | SA_REP     |  9500.00 |
+| David       | Bernstein  | SA_REP     |  9500.00 |
+| Tayler      | Fox        | SA_REP     |  9600.00 |
+| Hermann     | Baer       | PR_REP     | 10000.00 |
+| Harrison    | Bloom      | SA_REP     | 10000.00 |
+| Janette     | King       | SA_REP     | 10000.00 |
+| Peter       | Tucker     | SA_REP     | 10000.00 |
+| Eleni       | Zlotkey    | SA_MAN     | 10500.00 |
+| Clara       | Vishney    | SA_REP     | 10500.00 |
+| Gerald      | Cambrault  | SA_MAN     | 11000.00 |
+| Ellen       | Abel       | SA_REP     | 11000.00 |
+| Den         | Raphaely   | PU_MAN     | 11000.00 |
+| Lisa        | Ozer       | SA_REP     | 11500.00 |
+| Alberto     | Errazuriz  | SA_MAN     | 12000.00 |
+| Shelley     | Higgins    | AC_MGR     | 12000.00 |
+| Nancy       | Greenberg  | FI_MGR     | 12000.00 |
+| Michael     | Hartstein  | MK_MAN     | 13000.00 |
+| Karen       | Partners   | SA_MAN     | 13500.00 |
+| John        | Russell    | SA_MAN     | 14000.00 |
+| Lex         | De Haan    | AD_VP      | 17000.00 |
+| Neena       | Kochhar    | AD_VP      | 17000.00 |
+| Steven      | King       | AD_PRES    | 24000.00 |
++-------------+------------+------------+----------+
+61 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT employee_id, first_name, last_name, 
+    -> (SELECT department_name FROM departments d 
+    -> SELECT employee_id, first_name, last_name, 
+    -> (SELECT department_name FROM departments d 
+    ->  ';
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELECT employee_id, first_name, last_name, 
+(SELECT department_name FROM departm' at line 3
+MariaDB [csd2204v18]> SELECT employee_id, first_name, last_name, 
+    -> (SELECT department_name FROM departments d 
+    -> WHERE e.department_id = d.department_id) department  
+    -> ';
+    '> ';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '';
+'' at line 4
+MariaDB [csd2204v18]> (SELECT department_name FROM departments WHERE e.department_id = d.department_id) department  
+    -> (SELECT department_name FROM departments WHERE e.department_id = d.department_id) department  ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'department  
+(SELECT department_name FROM departments WHERE e.department_id = d.' at line 1
+MariaDB [csd2204v18]> (SELECT department_name FROM departments WHERE e.department_id = d.department_id) department  FROM employees e ORDER BY department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'department  FROM employees e ORDER BY department' at line 1
+MariaDB [csd2204v18]> (SELECT department_name FROM departments d WHERE e.department_id = d.department_id) department  FROM employees e ORDER BY department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'department  FROM employees e ORDER BY department' at line 1
+MariaDB [csd2204v18]> SELECT employee_id, first_name
+    -> FROM employees AS A 
+    -> WHERE salary > ( SELECT AVG(salary) FROM employees 
+    -> WHERE department_id = A.department_id);
++-------------+------------+
+| employee_id | first_name |
++-------------+------------+
+|         100 | Steven     |
+|         103 | Alexander  |
+|         104 | Bruce      |
+|         108 | Nancy      |
+|         109 | Daniel     |
+|         114 | Den        |
+|         120 | Matthew    |
+|         121 | Adam       |
+|         122 | Payam      |
+|         123 | Shanta     |
+|         124 | Kevin      |
+|         137 | Renske     |
+|         141 | Trenna     |
+|         145 | John       |
+|         146 | Karen      |
+|         147 | Alberto    |
+|         148 | Gerald     |
+|         149 | Eleni      |
+|         150 | Peter      |
+|         151 | David      |
+|         152 | Peter      |
+|         156 | Janette    |
+|         157 | Patrick    |
+|         158 | Allan      |
+|         162 | Clara      |
+|         163 | Danielle   |
+|         168 | Lisa       |
+|         169 | Harrison   |
+|         170 | Tayler     |
+|         174 | Ellen      |
+|         184 | Nandita    |
+|         185 | Alexis     |
+|         188 | Kelly      |
+|         189 | Jennifer   |
+|         192 | Sarah      |
+|         193 | Britney    |
+|         201 | Michael    |
+|         205 | Shelley    |
++-------------+------------+
+38 rows in set (0.01 sec)
+
+MariaDB [csd2204v18]> SET @i = 0; SELECT i, employee_id
+Query OK, 0 rows affected (0.03 sec)
+
+    -> FROM (SELECT @i := @i + 1 AS i, employee_id
+    -> FROM employees) a WHERE MOD(a.i, 2) = 0;
++------+-------------+
+| i    | employee_id |
++------+-------------+
+|    2 |         101 |
+|    4 |         103 |
+|    6 |         105 |
+|    8 |         107 |
+|   10 |         109 |
+|   12 |         111 |
+|   14 |         113 |
+|   16 |         115 |
+|   18 |         117 |
+|   20 |         119 |
+|   22 |         121 |
+|   24 |         123 |
+|   26 |         125 |
+|   28 |         127 |
+|   30 |         129 |
+|   32 |         131 |
+|   34 |         133 |
+|   36 |         135 |
+|   38 |         137 |
+|   40 |         139 |
+|   42 |         141 |
+|   44 |         143 |
+|   46 |         145 |
+|   48 |         147 |
+|   50 |         149 |
+|   52 |         151 |
+|   54 |         153 |
+|   56 |         155 |
+|   58 |         157 |
+|   60 |         159 |
+|   62 |         161 |
+|   64 |         163 |
+|   66 |         165 |
+|   68 |         167 |
+|   70 |         169 |
+|   72 |         171 |
+|   74 |         173 |
+|   76 |         175 |
+|   78 |         177 |
+|   80 |         179 |
+|   82 |         181 |
+|   84 |         183 |
+|   86 |         185 |
+|   88 |         187 |
+|   90 |         189 |
+|   92 |         191 |
+|   94 |         193 |
+|   96 |         195 |
+|   98 |         197 |
+|  100 |         199 |
+|  102 |         201 |
+|  104 |         203 |
+|  106 |         205 |
++------+-------------+
+53 rows in set (0.04 sec)
+
+MariaDB [csd2204v18]> SELECT DISTINCT salary FROM employees e1 
+    -> WHERE 5 = (SELECT COUNT(DISTINCT salary) 
+    -> FROM employees  e2  
+    -> WHERE e2.salary >= e1.salary);
++----------+
+| salary   |
++----------+
+| 13000.00 |
++----------+
+1 row in set (0.01 sec)
+
+MariaDB [csd2204v18]> SELECT DISTINCT salary FROM employees e1 WHERE 4 = (SELECT COUNT(DISTINCT salary) 
+    -> FROM employees  e2 
+    -> WHERE e2.salary <= e1.salary);
++---------+
+| salary  |
++---------+
+| 2500.00 |
++---------+
+1 row in set (0.01 sec)
+
+MariaDB [csd2204v18]> SELECT * FROM (SELECT * FROM employees 
+    -> ORDER BY employee_id DESC LIMIT 10) sub 
+    -> ORDER BY employee_id ASC;
++-------------+------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL    | PHONE_NUMBER | HIRE_DATE  | JOB_ID     | SALARY   | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+|         197 | Kevin      | Feeney    | KFEENEY  | 650.507.9822 | 1987-09-22 | SH_CLERK   |  3000.00 |           0.00 |        124 |            50 |
+|         198 | Donald     | OConnell  | DOCONNEL | 650.507.9833 | 1987-09-23 | SH_CLERK   |  2600.00 |           0.00 |        124 |            50 |
+|         199 | Douglas    | Grant     | DGRANT   | 650.507.9844 | 1987-09-24 | SH_CLERK   |  2600.00 |           0.00 |        124 |            50 |
+|         200 | Jennifer   | Whalen    | JWHALEN  | 515.123.4444 | 1987-09-25 | AD_ASST    |  4400.00 |           0.00 |        101 |            10 |
+|         201 | Michael    | Hartstein | MHARTSTE | 515.123.5555 | 1987-09-26 | MK_MAN     | 13000.00 |           0.00 |        100 |            20 |
+|         202 | Pat        | Fay       | PFAY     | 603.123.6666 | 1987-09-27 | MK_REP     |  6000.00 |           0.00 |        201 |            20 |
+|         203 | Susan      | Mavris    | SMAVRIS  | 515.123.7777 | 1987-09-28 | HR_REP     |  6500.00 |           0.00 |        101 |            40 |
+|         204 | Hermann    | Baer      | HBAER    | 515.123.8888 | 1987-09-29 | PR_REP     | 10000.00 |           0.00 |        101 |            70 |
+|         205 | Shelley    | Higgins   | SHIGGINS | 515.123.8080 | 1987-09-30 | AC_MGR     | 12000.00 |           0.00 |        101 |           110 |
+|         206 | William    | Gietz     | WGIETZ   | 515.123.8181 | 1987-10-01 | AC_ACCOUNT |  8300.00 |           0.00 |        205 |           110 |
++-------------+------------+-----------+----------+--------------+------------+------------+----------+----------------+------------+---------------+
+10 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT * FROM departments 
+    -> WHERE department_id NOT IN (select department_id FROM employees);
++---------------+----------------------+------------+-------------+
+| DEPARTMENT_ID | DEPARTMENT_NAME      | MANAGER_ID | LOCATION_ID |
++---------------+----------------------+------------+-------------+
+|           120 | Treasury             |          0 |        1700 |
+|           130 | Corporate Tax        |          0 |        1700 |
+|           140 | Control And Credit   |          0 |        1700 |
+|           150 | Shareholder Services |          0 |        1700 |
+|           160 | Benefits             |          0 |        1700 |
+|           170 | Manufacturing        |          0 |        1700 |
+|           180 | Construction         |          0 |        1700 |
+|           190 | Contracting          |          0 |        1700 |
+|           200 | Operations           |          0 |        1700 |
+|           210 | IT Support           |          0 |        1700 |
+|           220 | NOC                  |          0 |        1700 |
+|           230 | IT Helpdesk          |          0 |        1700 |
+|           240 | Government Sales     |          0 |        1700 |
+|           250 | Retail Sales         |          0 |        1700 |
+|           260 | Recruiting           |          0 |        1700 |
+|           270 | Payroll              |          0 |        1700 |
++---------------+----------------------+------------+-------------+
+16 rows in set (0.00 sec)
+
+MariaDB [csd2204v18]> SELECT DISTINCT salary FROM employees a WHERE  3 >= (SELECT COUNT(DISTINCT salary) 
+    -> FROM employees b 
+    -> WHERE b.salary >= a.salary) 
+    -> ORDER BY a.salary DESC;
++----------+
+| salary   |
++----------+
+| 24000.00 |
+| 17000.00 |
+| 14000.00 |
++----------+
+3 rows in set (0.01 sec)
+
+MariaDB [csd2204v18]> SELECT DISTINCT salary FROM employees a WHERE  3 >= (SELECT COUNT(DISTINCT salary) 
+    -> FROM employees b 
+    -> WHERE b.salary <= a.salary) 
+    -> ORDER BY a.salary DESC;
++---------+
+| salary  |
++---------+
+| 2400.00 |
+| 2200.00 |
+| 2100.00 |
++---------+
+3 rows in set (0.01 sec)
+
+MariaDB [csd2204v18]> SELECT * FROM employees emp1 WHERE (5) = (SELECT COUNT(DISTINCT(emp2.salary)) 
+    -> FROM employees emp2 
+    -> WHERE emp2.salary > emp1.salary);
++-------------+------------+-----------+----------+--------------------+------------+--------+----------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL    | PHONE_NUMBER       | HIRE_DATE  | JOB_ID | SALARY   | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+------------+-----------+----------+--------------------+------------+--------+----------+----------------+------------+---------------+
+|         108 | Nancy      | Greenberg | NGREENBE | 515.124.4569       | 1987-06-25 | FI_MGR | 12000.00 |           0.00 |        101 |           100 |
+|         147 | Alberto    | Errazuriz | AERRAZUR | 011.44.1344.429278 | 1987-08-03 | SA_MAN | 12000.00 |           0.30 |        100 |            80 |
+|         205 | Shelley    | Higgins   | SHIGGINS | 515.123.8080       | 1987-09-30 | AC_MGR | 12000.00 |           0.00 |        101 |           110 |
++-------------+------------+-----------+----------+--------------------+------------+--------+----------+----------------+------------+---------------+
+3 rows in set (0.01 sec)
+
+MariaDB [csd2204v18]> 
+MariaDB [csd2204v18]> exit
