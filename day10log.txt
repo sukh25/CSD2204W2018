@@ -1,0 +1,1 @@
+MariaDB [csd2204w18]> exit 
